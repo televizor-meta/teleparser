@@ -104,7 +104,7 @@ if __name__ == '__main__':
     all_html_files = [f for f in glob.glob(path) if '.html' in f]
 
     all_pages_data = {}
-    for i in range(30):
+    for i in range(100):
         all_pages_data[all_html_files[i]] = process_page(all_html_files[i])
 
     print(json.dumps(all_pages_data, ensure_ascii=False))
