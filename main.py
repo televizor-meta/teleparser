@@ -91,7 +91,10 @@ def extract_text(html_page):
 
 def process_page(page_path: str):
     with open(page_path, 'r') as file:
-        page_text = extract_text(file)
+        try:
+            page_text = extract_text(file)
+        except UnicodeDecodeError:
+            return []
         return parse_names(page_text)
 
 
@@ -101,7 +104,7 @@ if __name__ == '__main__':
     all_html_files = [f for f in glob.glob(path) if '.html' in f]
 
     all_pages_data = {}
-    for i in range(10):
+    for i in range(30):
         all_pages_data[all_html_files[i]] = process_page(all_html_files[i])
 
     print(json.dumps(all_pages_data, ensure_ascii=False))
